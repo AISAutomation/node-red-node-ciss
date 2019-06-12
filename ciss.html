@@ -1,0 +1,185 @@
+<!--
+
+Copyright 2019, AIS Automation Dresden GmbH
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this software and associated documentation files (the "Software"), to deal in 
+the Software without restriction, including without limitation the rights to 
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so, 
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER 
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+<script type="text/javascript">
+    RED.nodes.registerType('ciss-sensor',{
+        category: 'Bosch',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"CISS sensor"},
+			serial: {type:"ciss-port", required:true}
+        },
+        inputs:5,
+        outputs:13,
+        inputLabels: [ "Environmental", "Light", "Acceleration", "Magnetometer", "Gyroscope" ],
+        outputLabels: [ "Humidity", "Pressure", "Temperature", "Lux", "Acc-X", "Acc-Y", "Acc-Z", "Mag-X", "Mag-Y", "Mag-Z", "Gyro-X", "Gyro-Y", "Gyro-Z"],
+        icon: "fa-whmcs",
+        label: function() {
+            var serialNode = RED.nodes.node(this.serial);
+            return this.name||(serialNode?serialNode.label().split(":")[0]:this._("ciss.label.serial"));
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ciss-sensor">
+    <div class="form-row node-input-serial">
+        <label for="node-input-serial"><i class="fa fa-random"></i> <span data-i18n="ciss.label.serialport"></span></label>
+        <input type="text" id="node-input-serial">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="ciss-sensor">
+    <p>A node for Bosch CISS sensor in node red.</p>
+</script>
+
+<script type="text/x-red" data-template-name="ciss-port">
+    <div class="form-row">
+        <label for="node-config-input-serialport"><i class="fa fa-random"></i> <span data-i18n="ciss.label.serialport"></span></label>
+        <input type="text" id="node-config-input-serialport" style="width:66%;" data-i18n="[placeholder]ciss.placeholder.serialport">
+        <a id="node-config-lookup-serial" class="btn"><i id="node-config-lookup-serial-icon" class="fa fa-search"></i></a>
+    </div>
+    <div class="form-row">
+        <table width="100%"><tr>
+            <td width="100px"><i class="fa fa-wrench"></i> <span data-i18n="ciss.label.settings"></span></td>
+            <td width="110px" data-i18n="ciss.label.baudrate"></td>
+            <td width="70px" data-i18n="ciss.label.databits"></td>
+            <td width="80px" data-i18n="ciss.label.parity"></td>
+            <td width="70px" data-i18n="ciss.label.stopbits"></td>
+        </tr><tr><td>&nbsp;</td>
+        <td>
+            <input type="text" id="node-config-input-serialbaud" style="width:92%">
+        </td><td>
+        <select type="text" id="node-config-input-databits" style="width:90%;">
+            <option value="8">8</option>
+            <option value="7">7</option>
+            <option value="6">6</option>
+            <option value="5">5</option>
+        </select>
+        </td><td>
+        <select type="text" id="node-config-input-parity" style="width:90%;">
+            <option value="none" data-i18n="ciss.parity.none"></option>
+            <option value="even" data-i18n="ciss.parity.even"></option>
+            <option value="mark" data-i18n="ciss.parity.mark"></option>
+            <option value="odd" data-i18n="ciss.parity.odd"></option>
+            <option value="space" data-i18n="ciss.parity.space"></option>
+        </select>
+        </td><td>
+        <select type="text" id="node-config-input-stopbits" style="width:90%;">
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select>
+        </td></tr></table>
+    </div>
+    <div class="form-tips" id="tip-timeout" hidden><span data-i18n="ciss.tip.timeout"></span></div>
+</script>
+
+<script type="text/x-red" data-help-name="ciss-port">
+    <p>Provides configuration options for a serial port.</p>
+    <p>The search button should return a list of available serial ports to choose from, or you
+    can type in the location if known.</p>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('ciss-port',{
+        category: 'config',
+        defaults: {
+            //name: {value:""},
+            serialport: {value:"",required:true},
+            serialbaud: {value:"57600",required:true,validate:RED.validators.number()},
+            databits: {value:8,required:true},
+            parity: {value:"none",required:true},
+            stopbits: {value:1,required:true},
+            responsetimeout: {value: 10000}
+        },
+        label: function() {
+            this.serialbaud = this.serialbaud || 57600;
+            this.databits = this.databits || 8;
+            this.parity = this.parity || this._("ciss.label.none");
+            this.stopbits = this.stopbits || 1;
+            return this.serialport+":"+this.serialbaud+"-"+this.databits+this.parity.charAt(0).toUpperCase()+this.stopbits;
+        },
+        oneditprepare: function() {
+            var previous = null;
+            var blist = [
+                {value:"115200",label:"115200",hasValue:false},
+                {value:"57600",label:"57600",hasValue:false},
+                {value:"38400",label:"38400",hasValue:false},
+                {value:"19200",label:"19200",hasValue:false},
+                {value:"9600",label:"9600",hasValue:false},
+                {value:"4800",label:"4800",hasValue:false},
+                {value:"2400",label:"2400",hasValue:false},
+                {value:"1200",label:"1200",hasValue:false},
+                {value:"600",label:"600",hasValue:false},
+                {value:"300",label:"300",hasValue:false},
+                {label:"other",value:"other",icon:"red/images/typedInput/09.png",validate:/^[0-9]*$/}
+            ];
+
+            var serialbaudType = "custom";
+            for (var i in blist) {
+                if (this.serialbaud == blist[i].value) {
+                    serialbaudType = this.serialbaud;
+                }
+            }
+
+            $("#node-config-input-serialbaud").typedInput({
+                default: this.serialbaud,
+                types:blist
+            });
+
+            try {
+                $("#node-config-input-serialport").autocomplete( "destroy" );
+            } catch(err) {
+            }
+            $("#node-config-lookup-serial").click(function() {
+                $("#node-config-lookup-serial").addClass('disabled');
+                $.getJSON('serialports',function(data) {
+                    $("#node-config-lookup-serial").removeClass('disabled');
+                    var ports = [];
+                    $.each(data, function(i, port) {
+                        ports.push(port.comName);
+                    });
+                    $("#node-config-input-serialport").autocomplete({
+                        source:ports,
+                        minLength:0,
+                        close: function( event, ui ) {
+                            $("#node-config-input-serialport").autocomplete( "destroy" );
+                        }
+                    }).autocomplete("search","");
+                });
+            });
+        },
+        oneditsave: function() {
+            var mytype = $("#node-config-input-serialbaud").typedInput('type');
+            if (mytype !== "other") {
+                $("#node-config-input-serialbaud").typedInput('value',mytype);
+            }
+            this.serialbaud = $("#node-config-input-serialbaud").typedInput('value');
+        }
+    });
+</script>
