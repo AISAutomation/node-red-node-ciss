@@ -10,7 +10,7 @@ Node for using the BOSCH CISS sensor inside node-red. The following senor types 
 
 ## Installation
 
-`npm install node-red-node-ciss
+`npm install node-red-node-ciss`
 
 ## Quick Start
 
