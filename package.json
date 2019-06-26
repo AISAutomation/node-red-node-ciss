@@ -1,5 +1,5 @@
 {
-  "name": "node-red-node-ciss",
+  "name": "@ais_automation/node-red-node-ciss",
   "version": "0.1.0",
   "description": "Bosch CISS sensor node",
   "dependencies": {
@@ -10,11 +10,7 @@
     "bosch",
     "ciss"
   ],
-  "author": {
-    "name": "Stephan Wolf",
-    "email": "stephan.wolf@ais-automation.com",
-    "url": "https://www.ais-automation.com"
-  },
+  "author": "Stephan Wolf <stephan.wolf@ais-automation.com> (https://www.ais-automation.com)",
   "license": "MIT",
   "node-red": {
     "version": ">=0.18.0",
@@ -29,8 +25,8 @@
     "test": "mocha 'test/*_spec.js' --reporter mocha-junit-reporter"
   },
   "repository": {
-    "type": "https",
-    "url": "https://tfs.de-ais.r-r.local/tfs/BU3.Railway/IoT/_versionControl?path=%24%2FIoT%2FSoftware%2FNode-red%20Nodes%2Fnode-red-node-ciss"
+    "type": "git",
+    "url": "git+https://github.com/AISAutomation/node-red-node-ciss.git"
   },
   "devDependencies": {
     "mocha": "^6.1.4",
@@ -38,5 +34,13 @@
     "node-red": "^0.20.5",
     "node-red-node-test-helper": "^0.2.2",
     "should": "^13.2.3"
-  }
+  },
+  "main": "ciss.js",
+  "directories": {
+    "test": "test"
+  },
+  "bugs": {
+    "url": "https://github.com/AISAutomation/node-red-node-ciss/issues"
+  },
+  "homepage": "https://github.com/AISAutomation/node-red-node-ciss#readme"
 }
