@@ -61,11 +61,11 @@ module.exports = function (RED) {
         };
 
         this.enable_sensor = function (sensor) {
-            return this._switch_sensor(sensor, 0x01)
+            return this._switch_sensor(sensor, 0x01);
         };
 
         this.disable_sensor = function (sensor) {
-            return this._switch_sensor(sensor, 0x00)
+            return this._switch_sensor(sensor, 0x00);
         };
 
         this.check_payload = function (payload) {
@@ -86,7 +86,7 @@ module.exports = function (RED) {
             node.disable_sensor(0x84);
             node.disable_sensor(0x85);
             node.disable_sensor(0x86);
-        }
+        };
 
         this.parse_payload = function (_payload) {
             //            outputLabels: 
@@ -159,17 +159,17 @@ module.exports = function (RED) {
             node.status({ fill: "grey", shape: "dot", text: "node-red:common.status.not-connected" });
             node.port = serialPool.get(this.serialConfig);
 
-            node.port.on('data', function (msgout) {
+            node.port.on("data", function (msgout) {
                 node.parse_payload(msgout);
             });
 
-            node.port.on('ready', function () {
+            node.port.on("ready", function () {
                 // disable all sensors on startup
                 node.disable_all_sensors();
 
                 node.status({ fill: "green", shape: "dot", text: "node-red:common.status.connected" });
             });
-            node.port.on('closed', function () {
+            node.port.on("closed", function () {
                 node.disable_all_sensors();
                 node.status({ fill: "red", shape: "ring", text: "node-red:common.status.not-connected" });
             });
@@ -248,7 +248,7 @@ module.exports = function (RED) {
 
         this.on("close", function (done) {
             if (this.serialConfig) {
-                disable_all_sensors();
+                this.disable_all_sensors();
                 serialPool.close(this.serialConfig.serialport, done);
             }
             else {
@@ -323,7 +323,7 @@ module.exports = function (RED) {
                                 msg: msg,
                                 payload: payload,
                                 cb: cb,
-                            }
+                            };
                             this.queue.push(qobj);
                             // If we're enqueing the first message in line,
                             // we shall send it right away
@@ -336,7 +336,7 @@ module.exports = function (RED) {
                             var qobj = this.queue[0];
                             this.write(qobj.payload, qobj.cb);
                             var msg = qobj.msg;
-                            var timeout = msg.timeout || responsetimeout;
+                            var timeout = msg.timeout;
                             this.tout = setTimeout(function () {
                                 this.tout = null;
                                 var msgout = obj.dequeue() || {};
@@ -350,7 +350,7 @@ module.exports = function (RED) {
                                     msgout.payload = m;
                                 }
                                 /* Notify the sender that a timeout occurred */
-                                obj._emitter.emit('timeout', msgout, qobj.sender);
+                                obj._emitter.emit("timeout", msgout, qobj.sender);
                             }, timeout);
                         },
                         dequeue: function () {
@@ -371,7 +371,7 @@ module.exports = function (RED) {
                             this.writehead();
                             return msg;
                         },
-                    }
+                    };
                     //newline = newline.replace("\\n","\n").replace("\\r","\r");
                     var olderr = "";
                     var setupSerial = function () {
@@ -382,7 +382,7 @@ module.exports = function (RED) {
                             stopBits: stopbits,
                             //parser: serialp.parsers.raw,
                             autoOpen: true
-                        }, function (err, results) {
+                        }, function (err) {
                             if (err) {
                                 if (err.toString() !== olderr) {
                                     olderr = err.toString();
@@ -393,33 +393,33 @@ module.exports = function (RED) {
                                 }, settings.serialReconnectTime);
                             }
                         });
-                        obj.serial.on('error', function (err) {
+                        obj.serial.on("error", function (err) {
                             RED.log.error(RED._("ciss.errors.error", { port: port, error: err.toString() }));
-                            obj._emitter.emit('closed');
+                            obj._emitter.emit("closed");
                             obj.tout = setTimeout(function () {
                                 setupSerial();
                             }, settings.serialReconnectTime);
                         });
-                        obj.serial.on('close', function () {
+                        obj.serial.on("close", function () {
                             if (!obj._closing) {
                                 RED.log.error(RED._("ciss.errors.unexpected-close", { port: port }));
-                                obj._emitter.emit('closed');
+                                obj._emitter.emit("closed");
                                 obj.tout = setTimeout(function () {
                                     setupSerial();
                                 }, settings.serialReconnectTime);
                             }
                         });
-                        obj.serial.on('open', function () {
+                        obj.serial.on("open", function () {
                             olderr = "";
                             RED.log.info(RED._("ciss.onopen", { port: port, baud: baud, config: databits + "" + parity.charAt(0).toUpperCase() + stopbits }));
                             if (obj.tout) {
                                 clearTimeout(obj.tout); obj.tout = null;
                             }
                             //obj.serial.flush();
-                            obj._emitter.emit('ready');
+                            obj._emitter.emit("ready");
                         });
 
-                        obj.serial.on('data', function (d) {
+                        obj.serial.on("data", function (d) {
                             var sof = "\xFE";
                             i = 0;
                             var innerbuffer = new Buffer.alloc(512);
@@ -438,14 +438,14 @@ module.exports = function (RED) {
 
                                 i++;
                                 if (i == expectedSize) {
-                                    obj._emitter.emit('data', Buffer.from(innerbuffer.slice(0, i)));
+                                    obj._emitter.emit("data", Buffer.from(innerbuffer.slice(0, i)));
                                 }
                             });
                         });
                         // obj.serial.on("disconnect",function() {
                         //     RED.log.error(RED._("serial.errors.disconnected",{port:port}));
                         // });
-                    }
+                    };
                     setupSerial();
                     return obj;
                 }());
@@ -463,19 +463,21 @@ module.exports = function (RED) {
                             done();
                         });
                     }
-                    catch (err) { }
+                    catch (err) { 
+                        RED.log.debug(RED._("ciss.errors.closed", err));
+                    }
                     delete connections[port];
                 }
                 else {
                     done();
                 }
             }
-        }
+        };
     }());
 
-    RED.httpAdmin.get("/ciss", RED.auth.needsPermission('serial.read'), function (req, res) {
+    RED.httpAdmin.get("/ciss", RED.auth.needsPermission("serial.read"), function (req, res) {
         serialp.list(function (err, ports) {
             res.json(ports);
         });
     });
-}
+};
