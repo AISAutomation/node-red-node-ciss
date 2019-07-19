@@ -1,8 +1,9 @@
 {
-  "name": "node-red-node-ciss",
+  "name": "@ais_automation/node-red-node-ciss",
   "version": "0.1.0",
   "description": "Bosch CISS sensor node",
   "dependencies": {
+    "js-yaml": "^3.13.1",
     "serialport": "^7.1.5"
   },
   "keywords": [
@@ -10,11 +11,7 @@
     "bosch",
     "ciss"
   ],
-  "author": {
-    "name": "Stephan Wolf",
-    "email": "stephan.wolf@ais-automation.com",
-    "url": "https://www.ais-automation.com"
-  },
+  "author": "Stephan Wolf <stephan.wolf@ais-automation.com> (https://www.ais-automation.com)",
   "license": "MIT",
   "node-red": {
     "version": ">=0.18.0",
@@ -33,10 +30,21 @@
     "url": "https://tfs.de-ais.r-r.local/tfs/BU3.Railway/IoT/_versionControl?path=%24%2FIoT%2FSoftware%2FNode-red%20Nodes%2Fnode-red-node-ciss"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "mocha": "^6.1.4",
     "mocha-junit-reporter": "^1.22.0",
     "node-red": "^0.20.5",
     "node-red-node-test-helper": "^0.2.2",
     "should": "^13.2.3"
+  },
+  "main": "ciss.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
   }
 }
