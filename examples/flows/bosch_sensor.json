@@ -1,0 +1,880 @@
+[
+    {
+        "id": "207aa298.20acfe",
+        "type": "tab",
+        "label": "Bosch Sensor",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "7514170e.fac0a",
+        "type": "ciss-sensor",
+        "z": "207aa298.20acfe",
+        "name": "CISS sensor",
+        "serial": "6324742a.4696a4",
+        "x": 515,
+        "y": 272,
+        "wires": [
+            [
+                "38966cc.4c99814",
+                "88f97281.5950a8"
+            ],
+            [
+                "d551963e.e3c3b",
+                "13ab7007.ec75b"
+            ],
+            [
+                "93757a1a.d3941",
+                "e14ff7b6.25cc78"
+            ],
+            [
+                "87f65f4d.a2047",
+                "c6d4d55d.b477a8"
+            ],
+            [
+                "a80f82c1.0de8a",
+                "7cf28138.6cfbb8"
+            ],
+            [
+                "8223f3b1.486b4",
+                "ae96d13.e667bb"
+            ],
+            [
+                "7e0ff645.df2448",
+                "e68113ad.1d33"
+            ],
+            [
+                "ddc5f970.f6de58",
+                "977e64c3.cfed2"
+            ],
+            [
+                "fb981d5b.676b08",
+                "20468546.1a0792"
+            ],
+            [
+                "5ba2c106.759af8",
+                "fca26b16.deada8"
+            ],
+            [
+                "f12d4c40.b2fe1",
+                "bab8705b.4ea5d"
+            ],
+            [
+                "f9ed114.76e78f",
+                "bca95a00.d95158"
+            ],
+            [
+                "3fc96946.e7ec26",
+                "c7dab748.0244d"
+            ]
+        ]
+    },
+    {
+        "id": "93757a1a.d3941",
+        "type": "ui_gauge",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "group": "d8b310f7.ee7168",
+        "order": 0,
+        "width": "9",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Temperatur",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-20",
+        "max": "40",
+        "colors": [
+            "#0000ff",
+            "#ff8000",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 984,
+        "y": 197,
+        "wires": []
+    },
+    {
+        "id": "87f65f4d.a2047",
+        "type": "ui_chart",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "group": "3e928c95.da59bc",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "label": "Lux",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#ff8000",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#ff8000",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 962,
+        "y": 239,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38966cc.4c99814",
+        "type": "ui_gauge",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "group": "d8b310f7.ee7168",
+        "order": 1,
+        "width": "9",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Luftfeuchte",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 986,
+        "y": 106,
+        "wires": []
+    },
+    {
+        "id": "d551963e.e3c3b",
+        "type": "ui_gauge",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "group": "d8b310f7.ee7168",
+        "order": 2,
+        "width": "9",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Luftdruck",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": "500",
+        "max": "1300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 974,
+        "y": 152,
+        "wires": []
+    },
+    {
+        "id": "74145f94.1dafd8",
+        "type": "ui_switch",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "label": "Umweltsensor",
+        "tooltip": "",
+        "group": "e8f001c4.d31ab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Environmental",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-2x",
+        "oncolor": "#007735",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-2x",
+        "offcolor": "#a82100",
+        "x": 130,
+        "y": 161,
+        "wires": [
+            [
+                "7514170e.fac0a"
+            ]
+        ]
+    },
+    {
+        "id": "c887cbb7.0354a",
+        "type": "ui_switch",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "label": "Lichtsensor",
+        "tooltip": "",
+        "group": "e8f001c4.d31ab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Light",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-2x",
+        "oncolor": "#007735",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-2x",
+        "offcolor": "#a82100",
+        "x": 78,
+        "y": 277,
+        "wires": [
+            [
+                "7514170e.fac0a"
+            ]
+        ]
+    },
+    {
+        "id": "7db6d63b.5f798",
+        "type": "ui_switch",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "label": "Beschleunigungssensor",
+        "tooltip": "",
+        "group": "e8f001c4.d31ab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Acceleration",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-2x",
+        "oncolor": "#007735",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-2x",
+        "offcolor": "#a82100",
+        "x": 118,
+        "y": 342,
+        "wires": [
+            [
+                "7514170e.fac0a"
+            ]
+        ]
+    },
+    {
+        "id": "d814c781.ca4df8",
+        "type": "ui_switch",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "label": "Magnetometer",
+        "tooltip": "",
+        "group": "e8f001c4.d31ab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Magnetometer",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-2x",
+        "oncolor": "#007735",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-2x",
+        "offcolor": "#a82100",
+        "x": 88,
+        "y": 397,
+        "wires": [
+            [
+                "7514170e.fac0a"
+            ]
+        ]
+    },
+    {
+        "id": "79d05149.759ae",
+        "type": "ui_switch",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "label": "Gyroskop",
+        "tooltip": "",
+        "group": "e8f001c4.d31ab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Gyroscope",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-toggle-on fa-2x",
+        "oncolor": "#007735",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "fa-toggle-off fa-2x",
+        "offcolor": "#a82100",
+        "x": 108,
+        "y": 457,
+        "wires": [
+            [
+                "7514170e.fac0a"
+            ]
+        ]
+    },
+    {
+        "id": "ddc5f970.f6de58",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "518c327e.52fc54",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Feldstärke X",
+        "label": "Feldstärke X",
+        "format": "{{msg.payload}} µT",
+        "layout": "row-spread",
+        "x": 978,
+        "y": 413,
+        "wires": []
+    },
+    {
+        "id": "fb981d5b.676b08",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "518c327e.52fc54",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Feldstärke Y",
+        "label": "Feldstärke Y",
+        "format": "{{msg.payload}} µT",
+        "layout": "row-spread",
+        "x": 977,
+        "y": 455,
+        "wires": []
+    },
+    {
+        "id": "5ba2c106.759af8",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "518c327e.52fc54",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Feldstärke Z",
+        "label": "Feldstärke Z",
+        "format": "{{msg.payload}} µT",
+        "layout": "row-spread",
+        "x": 974,
+        "y": 502,
+        "wires": []
+    },
+    {
+        "id": "f12d4c40.b2fe1",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "4a8b03cc.0090e4",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Gyroskop X",
+        "format": "{{msg.payload}} °/s",
+        "layout": "row-spread",
+        "x": 975,
+        "y": 567,
+        "wires": []
+    },
+    {
+        "id": "f9ed114.76e78f",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "4a8b03cc.0090e4",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Gyroskop Y",
+        "format": "{{msg.payload}} °/s",
+        "layout": "row-spread",
+        "x": 974,
+        "y": 609,
+        "wires": []
+    },
+    {
+        "id": "3fc96946.e7ec26",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "4a8b03cc.0090e4",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Gyroskop Z",
+        "format": "{{msg.payload}} °/s",
+        "layout": "row-spread",
+        "x": 974,
+        "y": 652,
+        "wires": []
+    },
+    {
+        "id": "a80f82c1.0de8a",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "bf10f974.0be61",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Beschleunigung X",
+        "format": "{{msg.payload}} mg",
+        "layout": "row-spread",
+        "x": 999,
+        "y": 282,
+        "wires": []
+    },
+    {
+        "id": "8223f3b1.486b4",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "bf10f974.0be61",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Beschleunigung Y",
+        "format": "{{msg.payload}} mg",
+        "layout": "row-spread",
+        "x": 998,
+        "y": 324,
+        "wires": []
+    },
+    {
+        "id": "7e0ff645.df2448",
+        "type": "ui_text",
+        "z": "207aa298.20acfe",
+        "group": "bf10f974.0be61",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Beschleunigung Z",
+        "format": "{{msg.payload}} mg",
+        "layout": "row-spread",
+        "x": 996,
+        "y": 365,
+        "wires": []
+    },
+    {
+        "id": "94734db.062b3b",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "Build message",
+        "func": "var values=msg.payload;\n\nvar d = new Date();\nd.getUTCDate();\nvar u = d.toISOString();\n\nvalues.forEach(x => x.timestamp = u);\n\nconst distinctValues = Array.from(new Set(values.map(x => x.id)))\n    .map(id => { return values.find( s=> s.id === id) });\n    \nmsg.payload = { \"items\" : distinctValues };\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1235,
+        "y": 422,
+        "wires": [
+            [
+                "430028f5.eb9388",
+                "581e57f6.968f58"
+            ]
+        ]
+    },
+    {
+        "id": "96e9169d.2a431",
+        "type": "join",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "5",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 952,
+        "y": 731,
+        "wires": [
+            [
+                "94734db.062b3b"
+            ]
+        ]
+    },
+    {
+        "id": "88f97281.5950a8",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "humidity",
+        "func": "var obj = { type:4,\n         id: \"humidity\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 615,
+        "y": 477,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "c7dab748.0244d",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "gyroscope.z",
+        "func": "var obj = { type:4,\n         id: \"gyroscope.z\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 623,
+        "y": 1018,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "bca95a00.d95158",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "gyroscope.y",
+        "func": "var obj = { type:4,\n         id: \"gyroscope.y\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 621,
+        "y": 974,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "bab8705b.4ea5d",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "gyroscope.x",
+        "func": "var obj = { type:4,\n         id: \"gyroscope.x\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 620,
+        "y": 930,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "fca26b16.deada8",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "magnetometer.z",
+        "func": "var obj = { type:4,\n         id: \"magnetometer.z\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 630,
+        "y": 890,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "20468546.1a0792",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "magnetometer.y",
+        "func": "var obj = { type:4,\n         id: \"magnetometer.y\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 629,
+        "y": 844,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "977e64c3.cfed2",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "magnetometer.x",
+        "func": "var obj = { type:4,\n         id: \"magnetometer.x\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 628,
+        "y": 801,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "13ab7007.ec75b",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "pressure",
+        "func": "var obj = { type:4,\n         id: \"pressure\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 612,
+        "y": 520,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "e14ff7b6.25cc78",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "temperature",
+        "func": "var obj = { type:4,\n         id: \"temperature\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 622,
+        "y": 562,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "c6d4d55d.b477a8",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "light",
+        "func": "var obj = { type:4,\n         id: \"light\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 601,
+        "y": 607,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "7cf28138.6cfbb8",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "accelerometer.x",
+        "func": "var obj = { type:4,\n         id: \"accelerometer.x\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 632,
+        "y": 654,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "ae96d13.e667bb",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "accelerometer.y",
+        "func": "var obj = { type:4,\n         id: \"accelerometer.y\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 631,
+        "y": 704,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "e68113ad.1d33",
+        "type": "function",
+        "z": "207aa298.20acfe",
+        "name": "accelerometer.z",
+        "func": "var obj = { type:4,\n         id: \"accelerometer.z\",\n         timestamp: (new Date()).toISOString(),\n         value: msg.payload\n        };\nmsg.payload = obj;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 631,
+        "y": 753,
+        "wires": [
+            [
+                "96e9169d.2a431"
+            ]
+        ]
+    },
+    {
+        "id": "c901e35c.0e7d6",
+        "type": "debug",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1592,
+        "y": 365,
+        "wires": []
+    },
+    {
+        "id": "430028f5.eb9388",
+        "type": "debug",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1587.21435546875,
+        "y": 268,
+        "wires": []
+    },
+    {
+        "id": "581e57f6.968f58",
+        "type": "Monitoring",
+        "z": "207aa298.20acfe",
+        "name": "",
+        "clientID": "",
+        "clientCredentials": "",
+        "containerNr": "",
+        "eq": "",
+        "numberOfMessages": "",
+        "jsonFile": "",
+        "hiddenSelectionValue": "",
+        "hiddenConfigRawData": "",
+        "hiddenShowSelection": "",
+        "x": 1400,
+        "y": 560,
+        "wires": [
+            [
+                "c901e35c.0e7d6"
+            ]
+        ]
+    },
+    {
+        "id": "6324742a.4696a4",
+        "type": "ciss-port",
+        "z": "",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "57600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "d8b310f7.ee7168",
+        "type": "ui_group",
+        "z": "",
+        "name": "Umweltsensor",
+        "tab": "fb4867b4.8516b",
+        "order": 2,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "3e928c95.da59bc",
+        "type": "ui_group",
+        "z": "",
+        "name": "Lichtsensor",
+        "tab": "fb4867b4.8516b",
+        "order": 3,
+        "disp": true,
+        "width": "13",
+        "collapse": false
+    },
+    {
+        "id": "e8f001c4.d31ab8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Bedienung",
+        "tab": "fb4867b4.8516b",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "518c327e.52fc54",
+        "type": "ui_group",
+        "z": "",
+        "name": "Magnetometer",
+        "tab": "fb4867b4.8516b",
+        "order": 4,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "4a8b03cc.0090e4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Gyroskop",
+        "tab": "fb4867b4.8516b",
+        "order": 5,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "bf10f974.0be61",
+        "type": "ui_group",
+        "z": "",
+        "name": "Beschleunigung",
+        "tab": "fb4867b4.8516b",
+        "order": 6,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "fb4867b4.8516b",
+        "type": "ui_tab",
+        "z": "",
+        "name": "AIS user conference 2019",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

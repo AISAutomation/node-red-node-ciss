@@ -282,7 +282,9 @@ module.exports = function (RED) {
                 var id = port;
                 // just return the connection object if already have one
                 // key is the port (file path)
-                if (connections[id]) { return connections[id]; }
+                if (connections[id]) { 
+                    return connections[id]; 
+                }
 
                 // State variables to be used by the on('data') handler
                 var i = 0; // position in the buffer
