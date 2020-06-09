@@ -872,7 +872,7 @@
         "id": "fb4867b4.8516b",
         "type": "ui_tab",
         "z": "",
-        "name": "AIS user conference 2019",
+        "name": "Bosch CISS example flow",
         "icon": "dashboard",
         "disabled": false,
         "hidden": false
